@@ -6,3 +6,22 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Flight {
+  aircraftType String?
+  createdAt    DateTime   @default(now())
+  icao         String?
+  id           String     @id @default(cuid())
+  positions    Position[]
+  updatedAt    DateTime   @updatedAt
+}
+
+model Position {
+  createdAt DateTime @default(now())
+  flight    Flight   @relation(fields: [flightId], references: [id])
+  flightId  String
+  id        String   @id @default(cuid())
+  lat       Decimal
+  lon       Decimal
+  updatedAt DateTime @updatedAt
+}

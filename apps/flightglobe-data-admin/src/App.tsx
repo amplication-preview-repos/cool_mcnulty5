@@ -5,6 +5,14 @@ import { theme } from "./theme/theme";
 import Login from "./Login";
 import "./App.scss";
 import Dashboard from "./pages/Dashboard";
+import { FlightList } from "./flight/FlightList";
+import { FlightCreate } from "./flight/FlightCreate";
+import { FlightEdit } from "./flight/FlightEdit";
+import { FlightShow } from "./flight/FlightShow";
+import { PositionList } from "./position/PositionList";
+import { PositionCreate } from "./position/PositionCreate";
+import { PositionEdit } from "./position/PositionEdit";
+import { PositionShow } from "./position/PositionShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -30,7 +38,22 @@ const App = (): React.ReactElement => {
         theme={theme}
         dashboard={Dashboard}
         loginPage={Login}
-      ></Admin>
+      >
+        <Resource
+          name="Flight"
+          list={FlightList}
+          edit={FlightEdit}
+          create={FlightCreate}
+          show={FlightShow}
+        />
+        <Resource
+          name="Position"
+          list={PositionList}
+          edit={PositionEdit}
+          create={PositionCreate}
+          show={PositionShow}
+        />
+      </Admin>
     </div>
   );
 };
